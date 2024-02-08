@@ -1,9 +1,13 @@
 package view;
 
+import model.Memoria;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Teclado extends JPanel {
+public class Teclado extends JPanel implements ActionListener {
     private final Color COR_CINZA_ESCURO = new Color(68,68,68);
     private final Color COR_CINZA_CLARO = new Color(97,100,99);
     private final Color COR_LARANJA = new Color(242,163,60);
@@ -51,6 +55,15 @@ public class Teclado extends JPanel {
         c.gridx = x;
         c.gridy = y;
         Botao botao = new Botao(texto, cor);
+        botao.addActionListener(this);
         add(botao,c);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() instanceof JButton) {
+            JButton botao = (JButton) e.getSource();
+            Memoria.getInstancia().processarComando(botao.getText());
+        }
     }
 }
