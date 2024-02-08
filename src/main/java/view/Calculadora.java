@@ -9,18 +9,18 @@ public class Calculadora extends JFrame {
     public Calculadora(){
 
         organizarLayout();
-
-        setSize(232,322);
+        setSize(245,349);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-         setVisible(true);
+        setVisible(true);
+        setResizable(false);
 
     }
 
     private void organizarLayout() {
         setLayout(new BorderLayout());
         Display display = new Display();
-        display.setPreferredSize(new Dimension(233,60));
+        display.setPreferredSize(new Dimension(245,60));
         add(display, BorderLayout.NORTH);
 
         Teclado teclado = new Teclado();
