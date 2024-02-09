@@ -12,6 +12,9 @@ public class Memoria {
     private static final Memoria instancia = new Memoria();
     private final List<MemoriaObservador> observadores = new ArrayList<>();
     private String textoAtual = "";
+    private String textoBuffer = "";
+    private boolean substituir = false;
+    private TipoComando ultimaOperacao = null;
 
     // Padrão de projeto SINGLETON!!!
     private Memoria(){
@@ -33,6 +36,21 @@ public class Memoria {
     public void processarComando(String texto){
 
         TipoComando tipoComando = detectarTipoComando(texto);
+
+        if(tipoComando == null){
+            return;
+        }else if(tipoComando == TipoComando.ZERAR){
+            textoAtual = "";
+            textoBuffer = "";
+            substituir = false;
+            ultimaOperacao = null;
+        } else if (tipoComando == tipoComando.NUMERO || tipoComando == tipoComando.VIRGULA) {
+            textoAtual = substituir ? texto : textoAtual + texto;
+            substituir = false;
+        }else{
+
+        }
+
         System.out.println(tipoComando);
         observadores.forEach(o-> o.valorAlterado(getTextoAtual()));
     }
@@ -58,7 +76,8 @@ public class Memoria {
                 return TipoComando.SUB;
             }else if("=".equals(texto)){
                 return TipoComando.IGUAL;
-            }else if(",".equals(texto)){
+            }else if(",".equals(texto)
+                    && !textoAtual.contains(",")){
                 return TipoComando.VIRGULA;
             }
         }
