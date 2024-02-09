@@ -24,8 +24,8 @@ Biblioteca para desenvolvimento de interfaces desktop presente no pacote do Java
 
 -> **Padrão de projeto: OBSERVER**:
 
-Para trabalhar com as ações dentro do jogo como abrir um campo, marcar, desmarcar, explodir uma mina e reiniciar, utilizei o padrão observer para notificar
-os respectivos observadores sobre o principal evento dentro do campo minado, o pressionamento do mouse.
+Nesse projeto o padrão Observer foi utilizado para lidar com as operações ligadas aos respectivos botões, como ZERAR, NUMERO, DIV, MULT, SUB, SOMA, IGUAL, VIRGULA.
+Utilizado na classe Memoria para lidar com a lógica e comunicando o observador display, que lida com a parte gráfica da aplicação.
 
 -> **Padrão de projeto: Singleton**:
 
